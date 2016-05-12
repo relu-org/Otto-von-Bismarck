@@ -58,6 +58,8 @@ if ($_SESSION['oauth_token']) {
 if (isset($_GET['action'])) {
 	switch ($_GET['action']) {
 		case 'create':
+			$slugifier = new \Slug\Slugifier;
+			$_POST['repoName'] = $slugifier->slugify($_POST['repoName']);
 			$repos = $gh->api('repo')->create($_POST['repoName']);
 			print('Creatied repository: '.$_POST['repoName'].'<br>All you need to do now is clicking on the upload button');
 			break;
@@ -92,7 +94,8 @@ $repos = array_map(function ($repo) {
 	return $repo['name'];
 }, $repos);
 
-$repoName = (isset($_POST['repoName']))? $_POST['repoName']: NULL;
+$slugifier = new \Slug\Slugifier;
+$repoName = (isset($_POST['repoName']))? $slugifier->slugify($_POST['repoName']): NULL;
 ?>
 <h1>Select one of your's repositories</h1>
 <form method="POST" action="?action=upload">
