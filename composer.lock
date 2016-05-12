@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c639aad7eedde00b302d0ace1ee82177",
-    "content-hash": "689150a5ef1b2c4dd009004f95fabe8d",
+    "hash": "43ea6c11a6b16315a9233f545d4eb45d",
+    "content-hash": "0ee6b6e45d29d5171b7a21ec5feb1b52",
     "packages": [
         {
             "name": "guzzle/guzzle",
@@ -101,6 +101,56 @@
                 "web service"
             ],
             "time": "2015-03-18 18:23:50"
+        },
+        {
+            "name": "kevinlebrun/slug.php",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kevinlebrun/slug.php.git",
+                "reference": "96af9eb40e8f5bb3a44b59c9f777d3301dfaebe0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kevinlebrun/slug.php/zipball/96af9eb40e8f5bb3a44b59c9f777d3301dfaebe0",
+                "reference": "96af9eb40e8f5bb3a44b59c9f777d3301dfaebe0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "satooshi/php-coveralls": "dev-master",
+                "squizlabs/php_codesniffer": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Slug": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Le Brun",
+                    "email": "lebrun.k@gmail.com",
+                    "homepage": "http://kevinlebrun.fr",
+                    "role": "developer"
+                }
+            ],
+            "description": "Slug helpers",
+            "homepage": "https://github.com/kevinlebrun/slug.php",
+            "keywords": [
+                "generate",
+                "helper",
+                "slug",
+                "util"
+            ],
+            "time": "2013-07-26 09:35:59"
         },
         {
             "name": "symfony/event-dispatcher",
