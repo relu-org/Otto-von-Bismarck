@@ -5,6 +5,10 @@ Otto von Bismarck
 
 It takes the JSON formatted data and pushes it via GitHub API (v3) to user selectable repository. It uses GitHub's OAtuh2 for authenticating user.
 
+## Installation
+
+Copy `.env.sample` to `.env` and populate it with your's GitHub Application ID and secret
+
 ## Usage
 
 Just post as `data` JSON list containing file objects described below. 
