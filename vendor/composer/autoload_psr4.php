@@ -16,6 +16,7 @@ return array(
     'SLLH\\StyleCIFixers\\' => array($vendorDir . '/sllh/styleci-fixers/src'),
     'SLLH\\StyleCIBridge\\' => array($vendorDir . '/sllh/php-cs-fixer-styleci-bridge/src'),
     'Github\\' => array($baseDir . '/lib/Github'),
+    'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'Composer\\Semver\\' => array($vendorDir . '/composer/semver/src'),
 );
