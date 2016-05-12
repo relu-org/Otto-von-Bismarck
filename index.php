@@ -15,6 +15,10 @@ if(isset($_POST['data'])) {
 	$_SESSION['data'] = $_POST['data'];
 }
 
+if (isset($_GET['remote'])) {
+	$_SESSION['remote'] = $_SERVER['REMOTE_ADDR'];
+}
+
 if(isset($_GET['code'])) {
   if(!isset($_GET['state']) || $_SESSION['state'] != $_GET['state']) {
     die('Oops...');
@@ -53,6 +57,14 @@ if(isset($_GET['code'])) {
 $gh = new \Github\Client();
 if ($_SESSION['oauth_token']) {
 	$gh->authenticate($_SESSION['oauth_token'],Github\Client::AUTH_HTTP_TOKEN);
+}
+
+if (isset($_SESSION['remote']) && isset($_SESSION['oauth_token'])) {
+	$ch = curl_init(getenv('REMOTE_SIGNUP_CALLBACK'));
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('token' => $_SESSION['oauth_token'])));
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	die;
 }
 
 if (isset($_GET['action'])) {

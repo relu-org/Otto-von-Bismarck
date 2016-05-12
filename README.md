@@ -7,7 +7,7 @@ It takes the JSON formatted data and pushes it via GitHub API (v3) to user selec
 
 ## Installation
 
-Copy `.env.sample` to `.env` and populate it with your's GitHub Application ID and secret
+Copy `.env.sample` to `.env` and populate it with your's GitHub Application ID, secret, and callback URL in you need remote signup.
 
 ## Usage
 
@@ -32,6 +32,9 @@ Field | Type | Description | Example
 
 <!--`update` | optional string | It should contain the sha1 of blob to be updated | 
 `commitMsg` | optional string | Custom commit message. Default shown in example column. | Uploaded by relu.org at &lt;date time&gt;-->
+
+## Remote sing up 
+Just configure `REMOTE_SIGNUP_CALLBACK` in Your .env file and call `<your-app-url>?remote`
 
 ## License
 
