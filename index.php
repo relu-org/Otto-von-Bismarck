@@ -60,8 +60,12 @@ if (isset($_GET['action'])) {
 		case 'create':
 			$slugifier = new \Slug\Slugifier;
 			$_POST['repoName'] = $slugifier->slugify($_POST['repoName']);
-			$repos = $gh->api('repo')->create($_POST['repoName']);
-			print('Creatied repository: '.$_POST['repoName'].'<br>All you need to do now is clicking on the upload button');
+			try {
+				$repos = $gh->api('repo')->create($_POST['repoName']);
+				print('Creatied repository: '.$_POST['repoName'].'<br>All you need to do now is clicking on the upload button');
+			} catch (Exception $e) {
+				print('Something went wrong. API returned message: '.$e->getMessage());
+			}
 			break;
 		case 'upload':
 			$commiter = array('name' => 'Relu-team', 'email' => 'info@relu.org');
@@ -72,11 +76,16 @@ if (isset($_GET['action'])) {
 
 			foreach ($data as $index => $file) {
 				$filePath = explode('/', $file->filePath);
+				$fileName = array_pop($filePath);
 				print('Uploading data to: '.$_POST['repoName'].' repository');
-				$data = $gh->api('repo')->contents()->create($_SESSION['me'], $_POST['repoName'], 
-                     $file->filePath, base64_decode($file->fileContent), 'Uploaded by relu.org at '.date('Y-m-d H:i:s'), 
-                     'gh-pages', $commiter);
-				print('Uploaded file:'. array_pop($filePath).' to: '.implode('/',$filePath).' with sha1: '.$data['content']['sha'].'<br>');
+				try {
+					$data = $gh->api('repo')->contents()->create($_SESSION['me'], $_POST['repoName'], 
+	                     $file->filePath, base64_decode($file->fileContent), 'Uploaded by relu.org at '.date('Y-m-d H:i:s'), 
+	                     'gh-pages', $commiter);
+					print('Uploaded file:'. $fileName.' to: '.implode('/',$filePath).' with sha1: '.$data['content']['sha'].'<br>');
+				} catch (Exception $e) {
+					print ('Something went wrong while uploading file: '.$filename.' error message: '.$e->getMessage().'<br>');
+				}
 			}
 			print('Finished uploading. Your page should be accessible in a shor while ');
 			print('<a href="http://'.$_SESSION['me'].'.github.io/'.$_POST['repoName'].'">here</a>');
