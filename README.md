@@ -16,14 +16,18 @@ Just post as `data` JSON list containing file objects described below.
 }
 ```
 
+Or you can use provided example `feedme.html`
+
 File object is defined by described below fields:
 
 Field | Type | Description | Example 
 --- | --- | --- | --- 
 `filePath` | string | Path in the structure of webpage. | `css/style.css`
 `fileContent` | base64 string | Contents of the file to upload. | `PGh0bWw+PGgxPkhlbGxvIFJFTFUhPC9oMT48L2h0bWw+`
-`update` | optional string | It should contain the sha1 of blob to be updated | 
-`commitMsg` | optional string | Custom commit message. Default shown in example column. | Uploaded by relu.org at &lt;date time&gt;
+
+
+<!--`update` | optional string | It should contain the sha1 of blob to be updated | 
+`commitMsg` | optional string | Custom commit message. Default shown in example column. | Uploaded by relu.org at &lt;date time&gt;-->
 
 ## License
 
