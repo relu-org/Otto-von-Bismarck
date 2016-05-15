@@ -31,7 +31,10 @@
         "knplabs/gaufrette": "Needed for optional Gaufrette cache"
     },
     "autoload": {
-        "psr-4": { "Github\\": "lib/Github/" }
+        "psr-4": { 
+            "Github\\": "lib/Github/",
+            "GHUploader\\": "GHUploader/"
+         }
     },
     "extra": {
         "branch-alias": {
