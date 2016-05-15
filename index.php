@@ -13,6 +13,13 @@ session_start();
 
 if(isset($_POST['data'])) {
 	$_SESSION['data'] = $_POST['data'];
+	if (isset($_POST['repoName'])) {
+		$_SESSION['redirectUrl'] = $_POST['redirectUrl'];
+		$_SESSION['repoName'] = $_POST['repoName'];
+		$_SESSION['isRemoteUpload'] = true;
+	} else {
+		$_SESSION['isRemoteUpload'] = false;
+	}
 }
 
 if (isset($_GET['remote'])) {
@@ -67,6 +74,10 @@ if (isset($_SESSION['remote']) && isset($_SESSION['oauth_token'])) {
 	die;
 }
 
+if ($_SESSION['isRemoteUpload'] && isset($_SESSION['oauth_token'])) {
+	$_GET['action'] = 'upload';
+}
+
 if (isset($_GET['action'])) {
 	switch ($_GET['action']) {
 		case 'create':
@@ -85,6 +96,10 @@ if (isset($_GET['action'])) {
 				die ('Nothing to upload!');
 			}
 			$data = json_decode($_SESSION['data']);
+
+			if($_SESSION['repoName'] != '') {
+				$_POST['repoName'] = $_SESSION['repoName'];
+			}
 
 			foreach ($data as $index => $file) {
 				$filePath = explode('/', $file->filePath);
