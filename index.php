@@ -124,7 +124,8 @@ if (isset($_GET['action'])) {
 	}
 }
 
-$me = $gh->api('me')->show()['login'];
+$me = $gh->api('me')->show();
+$me = $me['login'];
 $_SESSION['me'] = $me;
 $repos = $gh->api('user')->repositories($me);
 $repos = array_map(function ($repo) {
