@@ -68,6 +68,7 @@ if ($_SESSION['oauth_token']) {
 
 if (isset($_SESSION['remote']) && isset($_SESSION['oauth_token'])) {
 	header('Location: '.getenv('REMOTE_SIGNUP_CALLBACK').'?'.http_build_query(array('token' => $_SESSION['oauth_token'])));
+	unset($_SESSION['remote']);
 	// $ch = curl_init(getenv('REMOTE_SIGNUP_CALLBACK'));
 	// curl_setopt($ch, CURLOPT_POST, 1);
 	// curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('token' => $_SESSION['oauth_token'])));
